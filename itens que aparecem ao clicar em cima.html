@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Expansível</title>
+    <style>
+        .menu {
+            justify-content: center;
+            text-align: center;
+            display: flex;
+            gap: 200px;
+        }
+
+        .menu-item a{
+            font-weight: 800;
+            text-decoration: none;
+            background-color: #7f7676;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .menu-item {
+            box-shadow: 0px 10px 40px rgba(245, 34, 34, 0.2);
+            cursor: pointer;
+            width: 160px;
+            height: 40px;
+            color: black;
+            position: relative;
+            
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 36px;
+            left: 0%;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            margin-top: 2px;
+        }
+
+        .submenu a:hover {
+            background-color: #ddd;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: yellow;
+        }
+
+    
+        @media (max-width: 1200px) {
+
+        *{
+            text-align: center;
+            
+            
+        }
+
+    body {
+        font-size: 10px;
+        background-color: blue;
+    }
+
+    .menu {
+            gap: 10px;
+        }
+
+
+        .menu-item { 
+                margin-top: 80px;
+        }
+
+        .submenu {
+            right: 60%;
+            display: block;
+        }
+
+        .submenu a {
+            display: block;
+        }
+        }
+    </style>
+</head>
+<body>
+    <h1>Catálogo</h1>
+    <div class="menu">
+        <div class="menu-item">
+            <a onclick="toggleMenu(event)">Alguns sites</a>
+            <div class="submenu" style="display: none;">
+                <a href="https://google.com.br">Google</a>
+                <a href="https://youtube.com">Youtube</a>
+                <a href="https://chatgpt.com">Chat-GPT</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <a onclick="toggleMenu(event)">Outros sites</a>
+            <div class="submenu" style="display: none;">
+                <a href="https://github.com/">Git-Hub</a>
+                <a href="https://mediafire.com/">Mediafire</a>
+            </div>
+        </div>
+        <div class="menu-item">
+            <a onclick="toggleMenu(event)">Mais sites</a>
+            <div class="submenu" style="display: none;">
+                <a href="https://web.whatsapp.com/">Whatsapp</a>
+                <a href="https://instagram.com/">Instagram</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para alternar a visibilidade do submenu
+        function toggleMenu(event) {
+            const submenu = event.target.nextElementSibling;
+            const isVisible = submenu.style.display === "block";
+            
+            // Esconde todos os submenus
+            document.querySelectorAll('.submenu').forEach(item => item.style.display = "none");
+            
+            // Alterna a visibilidade do submenu clicado
+            submenu.style.display = isVisible ? "none" : "block";
+        }
+
+        // Fecha todos os menus ao clicar fora
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = event.target.closest('.menu-item');
+            if (!isClickInsideMenu) {
+                // Esconde todos os submenus
+                document.querySelectorAll('.submenu').forEach(item => item.style.display = "none");
+            }
+        });
+    </script>
+</body>
+</html>
